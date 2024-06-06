@@ -86,15 +86,11 @@
   margin-right: 8px;
 }
 
-.modal__radio-input:active {
-  accent-color: #fff;
-}
-
 .modal__label_type_radio {
   padding: 0;
 }
 
-input[type="radio"]:checked {
+.modal__radio-input[type="radio"]:checked {
   accent-color: #000;
 }
 
