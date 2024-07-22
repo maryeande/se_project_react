@@ -1,4 +1,5 @@
 import "./Header.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.png";
 
@@ -14,14 +15,17 @@ function Header({ handleAddClick, weatherData }) {
       <p className="header__details">
         {currentDate}, {weatherData.city}
       </p>
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__clothes-btn"
-      >
-        + Add clothes
-      </button>
+
       <div className="header__user-container">
+        <ToggleSwitch />
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__clothes-btn"
+        >
+          + Add clothes
+        </button>
+
         <p className="header__username">Terrence Tegegne</p>
         <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
       </div>
