@@ -1,8 +1,10 @@
 import { React, useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Profile from "../Profile/Profile";
 // import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
@@ -33,8 +35,8 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (e) => {
-    console.log(e);
+  const onAddItem = (values) => {
+    console.log(values);
   };
 
   const handleToggleChange = () => {
@@ -60,7 +62,18 @@ function App() {
       >
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Routes>
+            <Route
+              path="/se_project_react/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route path="/se_project_react/profile" element={<Profile />} />
+          </Routes>
           <Footer />
         </div>
         <AddItemModal
