@@ -5,8 +5,6 @@ function ItemCard({ item, onCardClick }) {
     onCardClick(item);
   };
 
-  const handleDelete = () => {};
-
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>

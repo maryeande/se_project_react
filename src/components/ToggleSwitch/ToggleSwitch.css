@@ -22,12 +22,16 @@
   position: absolute;
 }
 
+.switch__box:hover {
+  border-color: #000 !important;
+}
+
 .switch__slider-C {
   left: 28px;
 }
 
 .switch__active {
-  color: #fff;
+  color: #fff !important;
 }
 
 .switch__temp-C {

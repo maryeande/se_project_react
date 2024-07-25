@@ -20,4 +20,10 @@ function createCard({ name, imageUrl, weather }) {
   });
 }
 
-export { getItems, createCard };
+function deleteCard(cardId) {
+  return fetch(`${baseUrl}/items/${cardId}`, {
+    method: "DELETE",
+  });
+}
+
+export { getItems, createCard, deleteCard };

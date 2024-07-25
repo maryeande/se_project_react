@@ -5,13 +5,12 @@ import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
-// import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../../AddItemModal/AddItemModal";
-import { getItems, createCard } from "../../utils/api";
+import { getItems, createCard, deleteCard } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -41,6 +40,18 @@ function App() {
     createCard(values)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleDeleteItem = (cardId) => {
+    deleteCard(cardId)
+      .then(() => {
+        const updatedClothingItems = clothingItems.filter((item) => {
+          return item._id !== cardId;
+        });
+        setClothingItems(updatedClothingItems);
         closeActiveModal();
       })
       .catch(console.error);
@@ -91,6 +102,7 @@ function App() {
               path="/se_project_react/profile"
               element={
                 <Profile
+                  handleAddClick={handleAddClick}
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
@@ -103,6 +115,7 @@ function App() {
           closeActiveModal={closeActiveModal}
           activeModal={activeModal}
           onAddItem={onAddItem}
+          handleDeleteItem={handleDeleteItem}
         />
 
         <ItemModal
@@ -110,6 +123,7 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
           isOpen={activeModal === "preview"}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
