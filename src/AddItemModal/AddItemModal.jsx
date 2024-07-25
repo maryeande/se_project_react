@@ -38,12 +38,12 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem }) => {
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label">
+      <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
           type="url"
           className="modal__input"
-          id="imageURL"
+          id="imageUrl"
           placeholder="Image URL"
           value={link}
           onChange={handleUrlChange}
@@ -56,6 +56,7 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem }) => {
             type="radio"
             className="modal__radio-input"
             id="hot"
+            value="hot"
             name="input"
           />
           Hot
@@ -65,6 +66,7 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem }) => {
             type="radio"
             className="modal__radio-input"
             id="warm"
+            value="warm"
             name="input"
           />
           Warm
@@ -74,6 +76,7 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem }) => {
             type="radio"
             className="modal__radio-input"
             id="cold"
+            value="cold"
             name="input"
           />
           Cold

@@ -11,6 +11,7 @@ import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../../AddItemModal/AddItemModal";
+import { getItems, createCard } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -21,6 +22,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -36,7 +38,12 @@ function App() {
   };
 
   const onAddItem = (values) => {
-    console.log(values);
+    createCard(values)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const handleToggleChange = () => {
@@ -53,7 +60,14 @@ function App() {
       .catch(console.error);
   }, []);
 
-  console.log(currentTemperatureUnit);
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log(data);
+        setClothingItems(data.reverse());
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="page">
@@ -68,11 +82,20 @@ function App() {
               element={
                 <Main
                   weatherData={weatherData}
-                  handleCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
-            <Route path="/se_project_react/profile" element={<Profile />} />
+            <Route
+              path="/se_project_react/profile"
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
           </Routes>
           <Footer />
         </div>

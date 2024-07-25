@@ -3,7 +3,7 @@
   max-height: 610px;
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
 }
 
 .modal__image {
@@ -21,17 +21,20 @@
 }
 
 .modal__close_preview {
-  height: 16px;
-  width: 16px;
   opacity: 1;
   z-index: 1;
-  background-image: url(../../images/close-preview.svg);
+  background-image: url(../../images/close-prev-white.svg) !important;
 }
 
 .modal__footer {
   padding: 20px 32px 32px;
   background-color: #fff;
   border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__card-info {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -49,6 +52,16 @@
 .modal__weather {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+
+.modal__delete-button {
+  border: none;
+  color: rgba(255, 77, 0, 1);
+  background: none;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
