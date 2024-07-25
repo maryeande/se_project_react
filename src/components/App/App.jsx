@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -89,7 +89,7 @@ function App() {
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
           <Routes>
             <Route
-              path="/se_project_react/"
+              path="/"
               element={
                 <Main
                   weatherData={weatherData}
@@ -99,7 +99,7 @@ function App() {
               }
             />
             <Route
-              path="/se_project_react/profile"
+              path="/profile"
               element={
                 <Profile
                   handleAddClick={handleAddClick}
