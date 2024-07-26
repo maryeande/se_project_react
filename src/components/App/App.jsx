@@ -9,7 +9,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import AddItemModal from "../../AddItemModal/AddItemModal";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, createCard, deleteCard } from "../../utils/api";
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
     createCard(values)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
+        console.log(values);
         closeActiveModal();
       })
       .catch(console.error);
@@ -115,9 +116,7 @@ function App() {
           closeActiveModal={closeActiveModal}
           activeModal={activeModal}
           onAddItem={onAddItem}
-          handleDeleteItem={handleDeleteItem}
         />
-
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
