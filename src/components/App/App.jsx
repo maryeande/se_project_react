@@ -81,6 +81,41 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleClickClose = (e) => {
+      if (e.target.classList.contains("modal_opened")) {
+        closeActiveModal();
+      }
+      if (e.target.classList.contains("modal__close")) {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickClose);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickClose);
+    };
+  }, [activeModal]);
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider

@@ -1,9 +1,14 @@
 const baseUrl = "http://localhost:3001";
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error ${res.status}`);
+}
+
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
 function createCard({ name, imageUrl, weather }) {
@@ -17,9 +22,7 @@ function createCard({ name, imageUrl, weather }) {
       imageUrl,
       weather,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 function deleteCard(cardId) {
